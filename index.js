@@ -17,7 +17,7 @@ var dbase;
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
-  dbase = db.db("heroku_h8r3m961");
+  dbase = db.db("*");
 })
                            
 
