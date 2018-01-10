@@ -12,7 +12,7 @@ const session = require('express-session')
 
 //DB_SETTING
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://heroku_h8r3m961:868bro8g1ei4e7psrk0ffumh7o@ds247007.mlab.com:47007/heroku_h8r3m961";
+var url = "*";
 var dbase;
 
 MongoClient.connect(url, function(err, db) {
