@@ -5,7 +5,7 @@ Try the app --> https://app-estellar.herokuapp.com/
 
 With StellaShip you can see how stellar transactions works. You can send lumens with your account and see your balance.
 
-##Technologies:
+<b>Technologies</b>:
 
 - Node.JS 
 - ExpressJS
