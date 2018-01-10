@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body class="bg-white">
+
+  <% include ../partials/nav.ejs %>
+<div class="container mt-3 pt-5 pb-5 bg-light">
+  <div class="row">
+      <div class="col-lg-12 mb-4 text-center">
+        <div class="alert alert-info" role="alert">
+             <strong>Wait!</strong> This is a test page.
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <% if (success) { %>	
+  	    <div class="alert alert-success" role="alert">
+  			     <strong>Well done!</strong> Account created.
+  			</div>
+  		<% } %>
+      <% if (warning) { %>  
+        <div class="alert alert-warning" role="alert">
+             <strong>Warning!</strong> You have just do a request
+        </div>
+      <% } %>
+      <% if (error) { %>  
+        <div class="alert alert-danger" role="alert">
+             <strong>Error!</strong> There was an error. Please, try again.
+        </div>
+      <% } %>
+      <% if (wrong_pswd) { %>  
+        <div class="alert alert-danger" role="alert">
+             <strong>Error!</strong> The password must be length 8 character minimum. Try again.
+        </div>
+      <% } %>
+      <% if (wrong_login) { %>  
+        <div class="alert alert-danger" role="alert">
+             <strong>Error!</strong> Incorrect Login.
+        </div>
+      <% } %>
+		<form action="new_account" method="post">
+        <div class="form-inline">
+          <input type="password" class="form-control w-50 mr-2 mt-2" placeholder="Choose your password" name="choose_password">
+       		<button type="submit" class="btn btn-success mt-2" onclick="this.disable=true">Create a new address</button>
+        </div>
+    </form>
+    <form action="login" method="post">
+      <div class="form-inline">
+        <input type="password" class="form-control w-25 mt-2 mr-2" placeholder="Type Password" name="insert_password">  
+        <input type="text" class="form-control w-50 mt-2 mr-2" name="insert_publickey" placeholder="Insert your Public Key"><button type="submit" class="btn btn-info mt-2 " onclick="this.disable=true">Log In</button>
+      </div>
+    </form>
+    </div>
+  <div class="col-lg-6">
+  <% if (publicKey) { %>
+        <h3>Your account details</h3>
+        <h5 style="font-size: 75%"><b>Public Key: </b><%= publicKey %></h5>
+        <h5 style="font-size: 75%"><% if (secretKey) { %><b>Secret Key: </b><%= secretKey %><% } %></h5>
+        <h5 style="font-size: 75%"><% if (balance) { %><b>Balance: </b><%= balance %><% } %></h5>
+        <% if (secretKey) { %><div class="alert alert-primary" role="alert">
+             <strong>Remember!</strong> Save your secret key! It's important, we can't keep it! 
+        </div><% } %>
+  <% } %>
+  </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-12">
+          <hr>
+      </div>
+  </div>
+
+  <form action="send" method="post">
+    <div class="row">
+        <div class="col-lg-12 mb-4 mt-2">
+            <h2>Send Lumens</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <input type="text" class="form-control" name="sender" pattern=".{56,}"  placeholder="Your Secret Key">
+        </div>
+        <div class="col-lg-1 text-center">
+          <h3 class="transform-arrow">&#8674;</h3>        
+        </div>
+        <div class="col-lg-3">
+            <input type="text" class="form-control" name="beneficiary" pattern=".{56,}" placeholder="Beneficiary Key">
+        </div>
+        <div class="col-lg-1 text-center">
+            <h3 class="transform-arrow">&#8674;</h3>
+        </div>
+        <div class="col-lg-2">
+            <input type="number" class="form-control no-spin" name="amount" min="20" placeholder="Amount">
+        </div>
+        <div class="col-lg-1 text-center">
+            <h3 class="transform-arrow">&#8674;</h3>
+        </div>
+        <div class="col-lg-1 text-center">
+            <button type="submit" class="btn btn-primary">Go!</button>
+        </div>
+    </div>
+    <% if (send_error) { %>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="alert alert-danger mt-2" role="alert">
+             <strong>Error!</strong> Something went wrong! Try again.
+        </div>
+      </div>
+    </div>
+    <% } %>
+    <% if (send_success) { %>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="alert alert-success mt-2" role="alert">
+             <strong>Yeah!</strong> Everything works
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </form>
+
+</div>
+
+
+</body>
+</html>
